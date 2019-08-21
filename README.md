@@ -1,9 +1,9 @@
 Structure of the program:
 ------------------------------------------------------------------------------------------------
-The BorderAnalytics class is the main entry class to the program. It expects two arguments: input 
+The MainApplication class is the main entry class to the program. It expects two arguments: input 
 file and output file. Input file is mandatory; it throws exception if one is not specified. 
 
-The BorderAnalytics class has two servant classes: BorderCrossingAnalyzer and BorderCrossingReportWriter.
+The MainApplication class has two servant classes: BorderCrossingAnalyzer and BorderCrossingReportWriter.
 The BorderCrosssingAnalyzer takes a path to the input file. It then create a stream of lines (using java 8)
 and read one line at a time into a BorderCrossingInfo object. This approach is used so that the program 
 does not read entire data to memory at once, which would end up causing memory issue if the input file is huge in size.
@@ -15,7 +15,7 @@ Every time a new line is read, it checkes if the hashcode generated from it is i
 the value from this line is just added to the existing sum and the line is discarded. Else a new entry is 
 created in the map. Each line of code is consumed this way and discarded so that memory is conserved. 
 Once all the lines are consumed, the map of monthly border crossing summary by border, measure and month 
-is returned to the BorderAnalytics class.  
+is returned to the MainApplication class.  
 
 The summary map is now passed on to the BorderCrossingReportWriter for evaluating running average by border 
 and measure and write it the output file.  For each border and measure list of MonthlyCrossingSummary is
