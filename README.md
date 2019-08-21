@@ -22,6 +22,14 @@ and measure and write it the output file.  For each border and measure list of M
 sorted in ascending order so that running average can be calculated. Then each element of the sorted list 
 with running average is written to the output file. 
 
+Run instructions
+------------------
+I am not able to create the run.sh because when I try to use the test link it fails with the permission error. would you help me create the run.sh file? 
+
+Main class: src/report/MainApplication.java
+1st Arguments: input file (./input/Border_Crossing_Entry_Data.csv)
+2nd Argument: out put file (./output/report.csv)
+
 
 -----------------------------------NOTES below--------------------------------------------------
 NB: The example on github sets running average by border and measure to zero for the first month.
