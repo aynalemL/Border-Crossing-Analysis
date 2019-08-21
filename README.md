@@ -1,4 +1,4 @@
-tructure of the program:
+Structure of the program:
 ------------------------------------------------------------------------------------------------
 The BorderAnalytics class is the main entry class to the program. It expects two arguments: input 
 file and output file. Input file is mandatory; it throws exception if one is not specified. 
