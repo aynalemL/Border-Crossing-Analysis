@@ -5,4 +5,4 @@
 # python3.7 ./src/border_analytics.py ./input/Border_Crossing_Entry_data.csv ./output/report.csv
 
 ls -l /home/ubuntu/cc-grader/20A/apps/aynalemL_github/
-java -classpath /home/ubuntu/cc-grader/20A/apps/aynalemL_github/target/production/*  report.MainApplication /home/ubuntu/cc-grader/20A/apps/aynalemL_github/temp/input/Border_Crossing_Entry_Data.csv /home/ubuntu/cc-grader/20A/apps/aynalemL_github/temp/output/report.csv
+java -classpath /home/ubuntu/cc-grader/20A/apps/aynalemL_github/target/production/*  report.MainApplication ./input/Border_Crossing_Entry_Data.csv ./output/report.csv
