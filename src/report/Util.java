@@ -10,6 +10,6 @@ public class Util {
     }
 
     public static String formatDate(Date date) {
-        return  new SimpleDateFormat("M/d/yyyy hh:mm:ss a").format(date);
+        return  new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(date);
     }
 }
