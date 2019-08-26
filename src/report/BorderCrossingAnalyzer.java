@@ -63,7 +63,7 @@ public class BorderCrossingAnalyzer {
     }
 
     private static Date toDate(String strDate)  {
-        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy hh:mm:ss a");
         try {
             return formatter.parse(strDate);
         } catch (Exception e) {
