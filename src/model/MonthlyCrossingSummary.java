@@ -1,5 +1,7 @@
 package model;
 
+import report.Util;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,7 +10,7 @@ public class MonthlyCrossingSummary {
     private Date date;
     private String measure;
     private int sum;
-    private double runningAvg;
+    private int runningAvg;
 
     public MonthlyCrossingSummary(String border, Date date, String measure) {
         this.border = border;
@@ -55,7 +57,7 @@ public class MonthlyCrossingSummary {
         return runningAvg;
     }
 
-    public void setRunningAvg(double runningAvg) {
+    public void setRunningAvg(int runningAvg) {
         this.runningAvg = runningAvg;
     }
 
@@ -77,12 +79,12 @@ public class MonthlyCrossingSummary {
 
     @Override
     public String toString() {
-        return
-                 border  +
-                ", " + date +
-                ", " + measure +
-                ", " + sum +
-                ", " + runningAvg ;
-
+        StringBuilder resultLine = new StringBuilder();
+        resultLine.append(this.border).append(",")
+                .append(Util.formatDate(this.getDate()))
+                .append(",").append(this.measure)
+                .append(",").append(this.sum)
+                .append(",").append(this.runningAvg).append("\n");
+        return resultLine.toString();
     }
 }

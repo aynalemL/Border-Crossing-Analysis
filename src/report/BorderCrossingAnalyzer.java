@@ -3,13 +3,12 @@ package report;
 import model.BorderCrossingInfo;
 import model.GeoCoordinate;
 import model.MonthlyCrossingSummary;
+
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -79,6 +78,34 @@ public class BorderCrossingAnalyzer {
         return new GeoCoordinate(Double.parseDouble(a[0].trim()), Double.parseDouble(a[1].trim()));
     }
 
+    public  List<MonthlyCrossingSummary> computerRunningAverage(Map<String, Map<String, List<MonthlyCrossingSummary>>> groupedByBoarderMeasure) throws IOException {
+        List<MonthlyCrossingSummary> result = new ArrayList<>();
+        for(String boarder : groupedByBoarderMeasure.keySet()){
+            Map<String, List<MonthlyCrossingSummary>> groupedByMeasure = groupedByBoarderMeasure.get(boarder);
+            for(String measure : groupedByMeasure.keySet()){
+                List<MonthlyCrossingSummary> sorted = sortByDate(groupedByMeasure.get(measure));
+                result.addAll(computeMonthlyRunningAverage(sorted));
+            }
+        }
+        return result;
+    }
+    private List<MonthlyCrossingSummary> sortByDate(List<MonthlyCrossingSummary> monthlySummaries) {
+        return monthlySummaries.stream().sorted(Comparator.comparing(MonthlyCrossingSummary::getDate)).collect(Collectors.toList());
+    }
 
+    private List<MonthlyCrossingSummary> computeMonthlyRunningAverage(List<MonthlyCrossingSummary> sortedMonthly) throws IOException{
+        int runningTotal = 0;
+        int runningCount = 0;
+        List<MonthlyCrossingSummary> monthlyByMeasure = new ArrayList<>();
+        for(MonthlyCrossingSummary mbc : sortedMonthly){
+            int runningAvg = 0;
+            runningAvg = runningCount == 0? 0 : (int)Math.round(runningTotal*1d/runningCount);
+            mbc.setRunningAvg(runningAvg);
+            monthlyByMeasure.add(mbc);
+            runningCount++;
+            runningTotal+=mbc.getSum();
+        }
+        return monthlyByMeasure;
+    }
 
 }
